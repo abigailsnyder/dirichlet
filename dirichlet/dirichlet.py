@@ -333,7 +333,7 @@ def _fit_s(D, a0, logp, tol=1e-7, maxiter=1000):
             raise NotConvergingError(f"Unable to update s from {s0}")
 
         a = s1 * m
-        if abs(s1 - s0) < tol:
+        if (abs(s1 - s0) / abs(s0)) < tol:
             return a
 
     raise NotConvergingError(f"Failed to converge after {maxiter} iterations, " f"s is {s1}")
