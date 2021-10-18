@@ -364,7 +364,7 @@ def _fit_m(D, a0, logp, tol=1e-7, maxiter=1000):
     s = a0.sum()
     for i in range(maxiter):
         m = a0 / s
-        a1 = _ipsi(logp + (m * (psi(a0) - logp)).sum())
+        a1 = _ipsi(logp + (m * (psi(a0) - logp)).sum(), maxiter=maxiter)
         a1 = a1 / a1.sum() * s
 
         if norm(a1 - a0) < tol:
