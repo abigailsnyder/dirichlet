@@ -81,7 +81,7 @@ def test(D1, D2, method="meanprecision", maxiter=None):
     a0 : (K,) shape array
     a1 : (K,) shape array
     a2 : (K,) shape array
-        MLE parameters for the Dirichlet distributions fit to 
+        MLE parameters for the Dirichlet distributions fit to
         ``D1`` and ``D2`` together, ``D1``, and ``D2``, respectively."""
 
     N1, K1 = D1.shape
@@ -122,7 +122,7 @@ def pdf(alphas):
         ----------
         xs : (N, K) shape array
             The ``(N, K)`` shape input matrix
-        
+
         Returns
         -------
         (N,) shape array
@@ -396,7 +396,7 @@ def _ipsi(y, tol=1.48e-9, maxiter=10):
     """Inverse of psi (digamma) using Newton's method. For the purposes
     of Dirichlet MLE, since the parameters a[i] must always
     satisfy a > 0, we define ipsi :: R -> (0,inf).
-    
+
     Parameters
     ----------
     y : (K,) shape array
@@ -419,7 +419,7 @@ def _ipsi(y, tol=1.48e-9, maxiter=10):
     )
     for i in range(maxiter):
         x1 = x0 - (psi(x0) - y) / _trigamma(x0)
-        if norm(x1 - x0) < tol:
+        if (norm(x1 - x0) / norm(x0)) < tol:
             return x1
         x0 = x1
     raise NotConvergingError(f"Failed to converge after {maxiter} iterations, " f"value is {x1}")
